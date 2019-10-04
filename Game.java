@@ -1,5 +1,5 @@
 import java.util.concurrent.ThreadLocalRandom;
-
+import java.io.*;
 import java.util.Scanner;
 
 public class Game {
@@ -14,8 +14,8 @@ public class Game {
          "\u001B[91m", "\u001B[92m", "\u001B[93m", "\u001B[94m", "\u001B[95m", "\u001B[96m", "\u001B[97m"
         };
 
-    public static String player1;
-    public static String player2;
+    public static Player player1;
+    public static Player player2;
 
     private static void initalizeGame (String gameName) {
          int gameNameLength = gameName.length ();
@@ -30,16 +30,39 @@ public class Game {
     }
 
     private static void initalizeplayers () {
-        Scanner input = new Scanner(System.in);
+        Scanner input = new Scanner (System.in);
+        String  player1Name;
+        String  player2Name;
+        int     player1Color;
+        int     player2Color;
 
         System.out.print ("Player 1 enter a name: ");
-        player1 = input.next ();
-        System.out.print (player1 + "\n");
-        System.out.print ("Player 2 enter a name: ");
-        player2 = input.next ();
-        System.out.print (player2 + "\n");
+        player1Name = input.next ();
 
+        System.out.println ("Pick a color: \n 1. Blue \n 2. Yellow \n 3. Green \n 4. Red \n");
+        
+        player1Color = input.nextInt ();
+        player1  = new Player (player1Name, getColor (player1Color));  
+        System.out.println (player1.color + player1.name + " profile created");
+        
+       // player1 (player1Name, )
+        
+    }
 
+    private static String getColor (int color) {
+        switch (color) 
+            {
+                case 1: 
+                    return "\u001B[34m";
+                case 2: 
+                    return "\u001B[93m";
+                case 3: 
+                    return "\u001B[92m";
+                case 4: 
+                    return "\u001B[91m";
+                default:
+                    return "\u001B[95m";
+            }
     }
 
     protected static int randomNumberRanged (int min, int max) {
