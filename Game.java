@@ -42,12 +42,25 @@ public class Game {
   
     }
 
+    private static void startTicTacToe () {
+        boolean gameActive    = true;
+
+        Player currentPlayer = player1;
+
+        while (gameActive) {
+            currentPlayer.playerOut("place your piece (1 - 9)");
+
+            currentPlayer = (currentPlayer == player1) ? player2 : player1;
+        }
+    }
+
     protected static int randomNumberRanged (int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
     public static void main (String args[]) {
         initalizeGame (gameName);
-       // initalizePlayers ();
+        initalizePlayers ();
+        startTicTacToe ();
 
 
     }
