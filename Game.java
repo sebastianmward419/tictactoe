@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Game {
 
     public static String     gameName    = "Tic-Tac-Toe";
-    public static String[][] board       = null;
+    public static Board      board       = null;
     public static String     defaultANSI = "\u001B[0m";
 
     public static String[] rainbowColors = 
@@ -26,43 +26,20 @@ public class Game {
          }
          System.out.print (defaultANSI + "\n");
 
-         board = new Board ().createBoard(3, 3);
+         board = new Board ();
+         board.createBoard (3, 3);
+         board.placePiece (3, "x");
     }
 
-    private static void initalizeplayers () {
-        Scanner input = new Scanner (System.in);
-        String  player1Name;
-        String  player2Name;
-        int     player1Color;
-        int     player2Color;
-
-        System.out.print ("Player 1 enter a name: ");
-        player1Name = input.next ();
-
-        System.out.println ("Pick a color: \n 1. Blue \n 2. Yellow \n 3. Green \n 4. Red \n");
-        
-        player1Color = input.nextInt ();
-        player1  = new Player (player1Name, getColor (player1Color));  
-        System.out.println (player1.color + player1.name + " profile created");
-        
-       // player1 (player1Name, )
-        
-    }
-
-    private static String getColor (int color) {
-        switch (color) 
-            {
-                case 1: 
-                    return "\u001B[34m";
-                case 2: 
-                    return "\u001B[93m";
-                case 3: 
-                    return "\u001B[92m";
-                case 4: 
-                    return "\u001B[91m";
-                default:
-                    return "\u001B[95m";
-            }
+    private static void initalizePlayers () { 
+        player1 = new Player (1); 
+        player1.init (); 
+        player2 = new Player (2);
+        player2.init ();
+       
+        player1.input.close ();
+        player2.input.close ();
+  
     }
 
     protected static int randomNumberRanged (int min, int max) {
@@ -70,7 +47,7 @@ public class Game {
     }
     public static void main (String args[]) {
         initalizeGame (gameName);
-        initalizeplayers();
+       // initalizePlayers ();
 
 
     }
