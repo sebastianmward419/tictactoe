@@ -1,6 +1,8 @@
 public class Board {
+
+    public String[][] gameBoard = null;
     
-    String[][] createBoard (int columns, int rows) {
+    public void createBoard (int columns, int rows) {
         String[][] board = new String[columns][rows];
 
         for (int i = 0; i < board.length; i++) {
@@ -14,7 +16,11 @@ public class Board {
         System.out.println ("\n------------");
         System.out.print ("\u001B[0m");
 
-        return board;
+        this.gameBoard = board;
+    }
+
+    public void placePiece (int position, String piece) {
+        this.gameBoard[0][1] = piece;
     }
     
     public static void main (String args) {
