@@ -20,7 +20,16 @@ public class Board {
     }
 
     public void placePiece (int position, String piece) {
-        this.gameBoard[0][1] = piece;
+        int count = 0;
+
+        for (int i = 0; i < this.gameBoard.length; i++) {
+            for (int j = 0; j < this.gameBoard[i].length; j++) {
+                count++;
+                if (count == position) {
+                    this.gameBoard[i][j] = piece;
+                }
+            }
+        }
     }
     
     public static void main (String args) {
