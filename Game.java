@@ -37,21 +37,29 @@ public class Game {
         player2 = new Player (2);
         player2.init ();
        
-        player1.input.close ();
-        player2.input.close ();
+    //    player1.input.close ();
+    //    player2.input.close ();
   
     }
 
     private static void startTicTacToe () {
         boolean gameActive    = true;
-
-        Player currentPlayer = player1;
+        Player  currentPlayer = player1;
+        Scanner input         = new Scanner (System.in);
+        int     playerChoice  = 0;
 
         while (gameActive) {
-            currentPlayer.playerOut("place your piece (1 - 9)");
 
+            currentPlayer.playerOut("place your piece " + currentPlayer.name +  " (1 - 9)");
+            playerChoice = input.nextInt ();
+
+            board.placePiece (playerChoice , "X");
+            
             currentPlayer = (currentPlayer == player1) ? player2 : player1;
+            
         }
+        
+        input.close ();
     }
 
     protected static int randomNumberRanged (int min, int max) {
