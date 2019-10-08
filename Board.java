@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Board {
 
     public String[][] gameBoard = null;
@@ -29,6 +31,14 @@ public class Board {
                     this.gameBoard[i][j] = piece;
                 }
             }
+        }
+
+        showMatrix ();
+    }
+
+    protected void showMatrix () {
+        for (int i = 0; i < gameBoard.length; i++) {
+            System.out.println (Arrays.toString (gameBoard[i]));
         }
     }
     
